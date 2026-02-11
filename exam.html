@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>HTML & CSS MCQ Exam</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 
   <style>
     body {
@@ -37,7 +39,18 @@
       font-weight: bold;
       margin-top: 20px;
     }
+    body {
+  touch-action: manipulation;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+}
+
   </style>
+
+  
 </head>
 
 <body>
@@ -97,6 +110,28 @@ function submitExam() {
     `Name: ${name}<br>Roll No: ${roll}<br><br>Score: ${score} / 30`;
 }
 </script>
+
+<script>
+/* Block back button */
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+  history.go(1);
+};
+
+/* Warn on refresh or tab close */
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "Exam in progress. Leaving will end the exam.";
+});
+
+/* Detect refresh */
+if (sessionStorage.getItem("examStarted")) {
+  alert("Page refresh detected. Exam session locked.");
+} else {
+  sessionStorage.setItem("examStarted", "true");
+}
+</script>
+
 
 </body>
 </html>
