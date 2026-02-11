@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML & CSS MCQ Exam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 15px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .box {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>HTML & CSS MCQ Exam</h1>
+<p style="text-align:center;">30 Questions | Medium Level</p>
+
+<div class="box">
+  <h3>Student Details</h3>
+  <input type="text" id="studentName" placeholder="Student Name">
+  <input type="text" id="rollNumber" placeholder="Roll Number">
+</div>
+
+<form id="exam">
+
+<div class="box">
+<p>1. What does HTML stand for?</p>
+<input type="radio" name="q1" value="1"> Hyper Text Markup Language<br>
+<input type="radio" name="q1" value="0"> High Text Markup Language
+</div>
+
+<div class="box">
+<p>2. CSS stands for?</p>
+<input type="radio" name="q2" value="1"> Cascading Style Sheets<br>
+<input type="radio" name="q2" value="0"> Creative Style Sheets
+</div>
+
+<div class="box">
+<p>3. Which tag creates a hyperlink?</p>
+<input type="radio" name="q3" value="1">&lt;a&gt;<br>
+<input type="radio" name="q3" value="0">&lt;link&gt;
+</div>
+
+<!-- Continue till q30 same pattern -->
+
+<button type="button" onclick="submitExam()">Submit Exam</button>
+
+</form>
+
+<div id="result"></div>
+
+<script>
+function submitExam() {
+  const name = document.getElementById("studentName").value.trim();
+  const roll = document.getElementById("rollNumber").value.trim();
+
+  if (name === "" || roll === "") {
+    alert("Please enter Student Name and Roll Number");
+    return;
+  }
+
+  let score = 0;
+  document.querySelectorAll('input[type="radio"]:checked')
+    .forEach(a => score += Number(a.value));
+
+  document.getElementById("result").innerHTML =
+    `Name: ${name}<br>Roll No: ${roll}<br><br>Score: ${score} / 30`;
+}
+</script>
+
+</body>
+</html>
